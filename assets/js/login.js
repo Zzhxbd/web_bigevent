@@ -40,7 +40,7 @@ $(function() {
             e.preventDefault()
             $.ajax({
                 method: 'POST',
-                url: 'http://www.liulongbin.top:3007/api/reguser',
+                url: '/api/reguser',
                 data: { username: $('#form_reg [name=userName]').val(), password: $('#form_reg [name=password]').val() },
                 success: function(res) {
                     if (res.status !== 0) return layer.msg(res.message)
@@ -55,7 +55,7 @@ $(function() {
         e.preventDefault()
         $.ajax({
             method: 'POST',
-            url: 'http://www.liulongbin.top:3007/api/login',
+            url: '/api/login',
             data: { username: $('#form_login [name=userName]').val(), password: $('#form_login [name=password]').val() },
             success: function(res) {
                 if (res.status !== 0) return layer.msg('登录失败！')
@@ -69,4 +69,11 @@ $(function() {
 
         })
     })
+
+
+
+
+
+
+
 })
