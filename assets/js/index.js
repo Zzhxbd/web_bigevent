@@ -1,9 +1,21 @@
 $(function() {
-    getUserInfo()
+        getUserInfo()
 
-
-})
-
+        //点击按钮实现退出
+        var layer = layui.layer
+        $('#btnLogout').on('click', function() {
+            //用户是否确认退出
+            layer.confirm('确认退出登录?', { icon: 3, title: '提示' }, function(index) {
+                //清除本地token
+                localStorage.removeItem('token')
+                    //返回登录页面
+                location.href = '/login.html'
+                    //关闭询问框
+                layer.close(index);
+            });
+        })
+    })
+    //获取用户信息
 function getUserInfo() {
     $.ajax({
         method: 'GET',
