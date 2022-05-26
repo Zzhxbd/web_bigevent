@@ -46,7 +46,7 @@ function renderAvatar(user) {
         $('.layui-nav-img').attr('src', user.user_pic).show()
         $('.text-avatar').hide()
     } else {
-        $('.text-avatar').html(user.username.slice(0, 1).toUpperCase()).show()
+        $('.text-avatar').html(name.slice(0, 1).toUpperCase()).show()
         $('.layui-nav-img').hide()
     }
 }
