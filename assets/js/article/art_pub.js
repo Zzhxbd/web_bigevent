@@ -1,24 +1,10 @@
 $(function() {
     var layer = layui.layer
     var form = layui.form
-    initCate()
-        // 初始化富文本编辑器
+
+    // 初始化富文本编辑器
     initEditor()
-
-    function initCate() {
-        $.ajax({
-            method: 'GTE',
-            url: '/my/article/cates',
-            success: function(res) {
-                if (res.status !== 0) return layer.msg(res.message)
-                const htmlStr = template('tpl-cate', res)
-                $('[name=cate_id]').html(htmlStr)
-                form.render()
-            }
-
-        })
-    }
-    // 1. 初始化图片裁剪器
+        // 1. 初始化图片裁剪器
     var $image = $('#image')
 
     // 2. 裁剪选项
@@ -30,6 +16,22 @@ $(function() {
     // 3. 初始化裁剪区域
     $image.cropper(options)
 
+    initArtCate()
+
+    function initArtCate() {
+        $.ajax({
+            method: 'GET',
+            url: '/my/article/cates',
+            success: function(res) {
+                if (res.status !== 0) return layer.msg(res.message)
+                const htmlStr = template('tpl-cate', res)
+                $('[name=cate_id]').html(htmlStr)
+                form.render()
+            }
+        })
+    }
+
+    // 选择封面
     $('#btnChooseImage').on('click', function() {
         $('#coverFile').click()
     })
@@ -45,6 +47,7 @@ $(function() {
 
     })
 
+    // 发布文章
     var art_state = '已发布'
     $('#btnSave2').on('click', function() {
         art_state = '草稿'
